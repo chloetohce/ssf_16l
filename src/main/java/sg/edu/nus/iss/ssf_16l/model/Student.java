@@ -13,6 +13,9 @@ public class Student {
         this.phoneNo = phoneNo;
     }
 
+    public Student() {
+    }
+
     @Override
     public int hashCode() {
         final int prime = 31;

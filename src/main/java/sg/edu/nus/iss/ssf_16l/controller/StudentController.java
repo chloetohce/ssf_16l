@@ -1,42 +1,34 @@
 package sg.edu.nus.iss.ssf_16l.controller;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 
 import sg.edu.nus.iss.ssf_16l.model.Student;
-import sg.edu.nus.iss.ssf_16l.service.StudentService;
 
-
-
-@RestController
-@RequestMapping(path = "/api/students", produces = "application/json")
+@Controller
+@RequestMapping("/students")
 public class StudentController {
-
-    @Autowired
-    private StudentService studentService;
-
     @GetMapping("")
-    public ResponseEntity<List<Student>> allStudents() {
-        List<Student> students = studentService.findAll();
-        return ResponseEntity.ok().body(students);
+    public String studentForm(Model model) {
+        model.addAttribute("student", new Student());
+        return "studentForm";
     }
-    
-    
-    @PostMapping("")
-    public ResponseEntity<String> create(@RequestBody Student entity) {
-        studentService.add(entity);
 
-        // return new ResponseEntity<>("true", HttpStatus.OK);
-        return ResponseEntity.ok("true");
+    @PostMapping("")
+    public String postStudentForm(@ModelAttribute Student entity) {
+        return "redirect:/students/list";
     }
+    
+
+@GetMapping("/list")
+public String getMethodName(@RequestParam String param) {
+    return "studentList";
+}
+
     
 }

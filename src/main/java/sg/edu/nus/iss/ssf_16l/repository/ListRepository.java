@@ -2,6 +2,7 @@ package sg.edu.nus.iss.ssf_16l.repository;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Repository;
@@ -11,11 +12,8 @@ import sg.edu.nus.iss.ssf_16l.utility.Constant;
 @Repository
 public class ListRepository {
     @Qualifier(Constant.REDIS_TEMPLATE)
-    private final RedisTemplate<String, String> template;
-
-    public ListRepository(RedisTemplate<String, String> template) {
-        this.template = template;
-    }
+    @Autowired
+    private RedisTemplate<String, String> template;
 
     public void leftPush(String key, String value) {
         template.opsForList().leftPush(key, value);

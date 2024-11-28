@@ -6,11 +6,11 @@ public class Student {
     private String email;
     private String phoneNo;
 
-    public Student(Integer id, String name, String email, String phoneNo) {
+    public Student(Integer id, String fullName, String email, String phoneNumber) {
         this.id = id;
-        this.name = name;
+        this.name = fullName;
         this.email = email;
-        this.phoneNo = phoneNo;
+        this.phoneNo = phoneNumber;
     }
 
     public Student() {
@@ -44,7 +44,7 @@ public class Student {
         return id.equals(other.id) && name.equals(other.name) && email.equals(other.email) && phoneNo.equals(other.phoneNo);
     }
 
-    public int getId() {return id;}
+    public Integer getId() {return id;}
     public void setId(int id) {this.id = id;}
 
     public String getName() {return name;}

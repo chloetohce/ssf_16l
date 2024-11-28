@@ -6,10 +6,10 @@
     <title>Document</title>
 </head>
 <body>
-    <form method="post" action="/students" th:object="${student}">
+    <form method="post" th:action="@{/students}" th:object="${student}">
         <label for="id">ID</label>
         <br>
-        <input type="number" id="id" name="id" th:field="*{id}">
+        <input type="number" id="id" name="id" th:field="*{id}" >
         <br>
         <label for="name">Name</label>
         <br>
